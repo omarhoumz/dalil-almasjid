@@ -75,17 +75,17 @@ function getGeoLink(latitude: number, longitude: number, name?: string) {
 
   const geoCoords = `${latitude},${longitude}`
 
-  if (isAndroid) {
+  if (isAndroid || isIos) {
     const label = !name ? '' : encodeURI(name)
 
-    return `geo:0,0?q=${geoCoords}(${label})`
+    return `geo:${geoCoords}(${label})`
     // return `geo:${latitude},${longitude}`
   }
 
-  if (isIos) {
-    return `maps://?q=${geoCoords}_system`
-    // return `comgooglemaps://?q=${latitude},${longitude}`
-  }
+  // if (isIos) {
+  //   return `maps://?q=${geoCoords}_system`
+  //   // return `comgooglemaps://?q=${latitude},${longitude}`
+  // }
 
   return `https://www.google.com/maps/search/?api=1&query=${geoCoords}`
 }
