@@ -79,12 +79,10 @@ function getGeoLink(latitude: number, longitude: number, name?: string) {
     const label = !name ? '' : encodeURI(name)
 
     return `geo:0,0?q=${geoCoords}(${label})`
-    // return `geo:${latitude},${longitude}`
   }
 
   if (isIos) {
     return `maps://?q=${geoCoords}`
-    // return `comgooglemaps://?q=${latitude},${longitude}`
   }
 
   return `https://www.google.com/maps/search/?api=1&query=${geoCoords}`
