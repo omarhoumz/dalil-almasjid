@@ -1,5 +1,6 @@
-import { Link, Outlet, createRootRoute } from '@tanstack/react-router'
+import { Outlet, createRootRoute } from '@tanstack/react-router'
 import * as React from 'react'
+import { HeaderNav } from '../components/header-nav'
 
 export const Route = createRootRoute({
   component: RootComponent,
@@ -19,15 +20,10 @@ const TanStackRouterDevtools = !import.meta.env.DEV
 function RootComponent() {
   return (
     <React.Fragment>
-      <div className='p-2 flex gap-2'>
-        <Link to='/' className='[&.active]:font-bold'>
-          Dalil Almasjid
-        </Link>
-        <Link to='/about' className='[&.active]:font-bold'>
-          About
-        </Link>
-      </div>
+      <HeaderNav />
+
       <hr />
+
       <Outlet />
       <TanStackRouterDevtools />
     </React.Fragment>
