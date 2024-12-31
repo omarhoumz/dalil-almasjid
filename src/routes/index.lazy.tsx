@@ -75,7 +75,7 @@ function getGeoLink(latitude: number, longitude: number, name?: string) {
 
   const geoCoords = `${latitude},${longitude}`
 
-  if (isAndroid || isIos) {
+  if (isAndroid) {
     const label = !name ? '' : encodeURI(name)
 
     return `geo:0,0?q=${geoCoords}(${label})`
@@ -83,8 +83,8 @@ function getGeoLink(latitude: number, longitude: number, name?: string) {
   }
 
   if (isIos) {
-    // return `maps://?q=${geoCoords}_system`
-    return `comgooglemaps://?q=${geoCoords}`
+    return `maps://?q=${geoCoords}_system`
+    // return `comgooglemaps://?q=${latitude},${longitude}`
   }
 
   return `https://www.google.com/maps/search/?api=1&query=${geoCoords}`
