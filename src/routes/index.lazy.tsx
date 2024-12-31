@@ -83,8 +83,8 @@ function getGeoLink(latitude: number, longitude: number, name?: string) {
   }
 
   if (isIos) {
-    return `maps://?q=${geoCoords}_system`
-    // return `comgooglemaps://?q=${latitude},${longitude}`
+    // return `maps://?q=${geoCoords}_system`
+    return `comgooglemaps://?q=${geoCoords}`
   }
 
   return `https://www.google.com/maps/search/?api=1&query=${geoCoords}`
