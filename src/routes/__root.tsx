@@ -12,17 +12,13 @@ const TanStackRouterDevtools = !import.meta.env.DEV
       // Lazy load in development
       import('@tanstack/router-devtools').then((res) => ({
         default: res.TanStackRouterDevtools,
-        // For Embedded Mode
-        // default: res.TanStackRouterDevtoolsPanel
-      }))
+      })),
     )
 
 function RootComponent() {
   return (
     <React.Fragment>
       <HeaderNav />
-
-      <hr />
 
       <Outlet />
       <TanStackRouterDevtools />
