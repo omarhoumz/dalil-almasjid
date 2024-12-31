@@ -51,6 +51,7 @@ function RouteComponent() {
                   href={getGeoLink(
                     mosque.coordinates.latitude,
                     mosque.coordinates.longitude,
+                    mosque.name,
                   )}
                   target='_blank'
                   rel='noreferrer'
@@ -68,19 +69,25 @@ function RouteComponent() {
   )
 }
 
-function getGeoLink(latitude: number, longitude: number) {
+function getGeoLink(latitude: number, longitude: number, name?: string) {
   const isAndroid = navigator.userAgent.toLowerCase().indexOf('android') > -1
   const isIos = navigator.userAgent.toLowerCase().indexOf('iphone') > -1
 
+  const geoCoords = `${latitude},${longitude}`
+
   if (isAndroid) {
-    return `geo:${latitude},${longitude}`
+    const label = !name ? '' : encodeURI(name)
+
+    return `geo:0,0?q=${geoCoords}(${label})`
+    // return `geo:${latitude},${longitude}`
   }
 
   if (isIos) {
-    return `comgooglemaps://?q=${latitude},${longitude}`
+    return `maps://?q=${geoCoords}_system`
+    // return `comgooglemaps://?q=${latitude},${longitude}`
   }
 
-  return `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}`
+  return `https://www.google.com/maps/search/?api=1&query=${geoCoords}`
 }
 
 const mosques: Mosque[] = [
